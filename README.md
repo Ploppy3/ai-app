@@ -1,12 +1,102 @@
-# React + Vite
+# React Webpack Boilerplate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern React boilerplate with Webpack, Babel, Tailwind CSS, and React Router.
 
-Currently, two official plugins are available:
+## Technology Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend Framework**: React 19.1.0
+- **Routing**: React Router 7.6.3
+- **Form Management**: react-hook-form 7.59.0
+- **Build Tool**: Webpack 5.99.9 with webpack-dev-server 5.2.2
+- **Styling**: Tailwind CSS 4.1.11
+- **Type System**: JSDoc comments (NO TypeScript)
+- **Language**: JavaScript (ES6+)
+- **Linting**: ESLint 9.29.0
+- **Bundler**: Webpack with Babel for JSX transformation
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Hot Module Replacement (HMR)**: For a fast development workflow.
+- **React Router**: For client-side routing.
+- **Tailwind CSS**: For a utility-first CSS workflow.
+- **JSDoc**: For type checking in JavaScript.
+- **ESLint**: For code linting.
+- **Webpack**: For bundling and asset management.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14+)
+- npm (v6+)
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/ai-app.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd ai-app
+   ```
+3. Install the dependencies:
+   ```sh
+   npm install
+   ```
+
+### Development
+
+To start the development server, run:
+
+```sh
+npm run dev
+```
+
+This will start the Webpack dev server on `http://localhost:3001` with HMR enabled.
+
+## Available Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the application for production.
+- `npm run preview`: Serves the production build locally.
+- `npm run lint`: Lints the codebase.
+- `npm run type-check`: Checks for type errors using JSDoc.
+
+## Project Structure
+
+```
+ai-app/
+├── dist/
+├── public/
+├── src/
+│   ├── components/
+│   ├── containers/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .babelrc
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── jsconfig.json
+├── package.json
+├── postcss.config.cjs
+├── README.md
+└── webpack.config.cjs
+```
+
+## Deployment
+
+To build the application for production, run:
+
+```sh
+npm run build
+```
+
+This will create a `dist` folder with the production-ready assets. You can then deploy this folder to any static hosting service.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request with your changes.
