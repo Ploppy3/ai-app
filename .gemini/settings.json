@@ -1,0 +1,12 @@
+{
+  "hideTips": false,
+  "mcpServers": {
+    "my-mcp-server-2f3b69a7": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "./mcp-servers/say-hello.js"
+      ]
+    }
+  }
+}
