@@ -1,9 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-// --- MCP Server Definition ---
-console.log("Initializing Hello MCP Server...");
-
 // Create a new MCP Server instance.
 const server = new McpServer({
     name: 'hello-server',
@@ -13,7 +10,7 @@ const server = new McpServer({
 });
 
 // --- MCP Tool Definition ---
-server.tool("say-hello", "A test tool that responds with a greeting", ({ requestInfo }) => {
+server.tool("say-hello", "A test tool that responds with a greeting", () => {
     return {
         content: [{
             type: "text",

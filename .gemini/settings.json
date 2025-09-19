@@ -1,7 +1,6 @@
 {
-  "hideTips": false,
   "mcpServers": {
-    "my-mcp-server-2f3b69a7": {
+    "my-test-mcp": {
       "type": "stdio",
       "command": "node",
       "args": [
