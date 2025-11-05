@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+'use client';
 import { createPortal } from 'react-dom';
+import { usePortal } from '../../contexts/PortalContext';
 
 /**
  * Portal component
@@ -8,20 +9,13 @@ import { createPortal } from 'react-dom';
  * @returns {import('react').ReactPortal | null} The portal component
  */
 function Portal({ children }) {
-  const elRef = useRef(null);
-  if (!elRef.current) {
-    elRef.current = document.createElement('div');
+  const { portalContainerRef } = usePortal();
+
+  if (!portalContainerRef.current) {
+    return null;
   }
 
-  useEffect(() => {
-    const portalRoot = document.body;
-    portalRoot.appendChild(elRef.current);
-    return () => {
-      portalRoot.removeChild(elRef.current);
-    };
-  }, []);
-
-  return createPortal(children, elRef.current);
+  return createPortal(children, portalContainerRef.current);
 }
 
 export default Portal;

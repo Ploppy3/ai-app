@@ -1,34 +1,31 @@
-# React Webpack Boilerplate
+# Next.js AI App
 
-This is a modern React boilerplate with Webpack, Babel, Tailwind CSS, and React Router.
+This is a modern Next.js boilerplate with Tailwind CSS and JSDoc.
 
 ## Technology Stack
 
-- **Frontend Framework**: React 19.1.0
-- **Routing**: React Router 7.6.3
-- **Form Management**: react-hook-form 7.59.0
-- **Build Tool**: Webpack 5.99.9 with webpack-dev-server 5.2.2
-- **Styling**: Tailwind CSS 4.1.11
-- **Type System**: JSDoc comments (NO TypeScript)
-- **Language**: JavaScript (ES6+)
-- **Linting**: ESLint 9.29.0
-- **Bundler**: Webpack with Babel for JSX transformation
+- **Framework**: [Next.js](https://nextjs.org/) ^15.5.4
+- **Frontend Framework**: [React](https://react.dev/) ^19.1.1
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) ^4.1.13
+- **Type System**: JSDoc comments with TypeScript for type-checking
+- **Language**: JavaScript (ESM)
+- **Linting**: [ESLint](https://eslint.org/) (via `next lint`)
+- **Compiler**: [Babel](https://babeljs.io/) with `babel-plugin-react-compiler`
 
 ## Features
 
-- **Hot Module Replacement (HMR)**: For a fast development workflow.
-- **React Router**: For client-side routing.
+- **Next.js App Router**: Uses the `app` directory for routing.
+- **React Compiler**: Experimental React compiler enabled for automatic optimizations.
 - **Tailwind CSS**: For a utility-first CSS workflow.
 - **JSDoc**: For type checking in JavaScript.
 - **ESLint**: For code linting.
-- **Webpack**: For bundling and asset management.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14+)
-- npm (v6+)
+- Node.js (v18.17 or later)
+- npm
 
 ### Installation
 
@@ -53,38 +50,37 @@ To start the development server, run:
 npm run dev
 ```
 
-This will start the Webpack dev server on `http://localhost:3001` with HMR enabled.
+This will start the Next.js dev server on `http://localhost:3000`.
 
 ## Available Scripts
 
 - `npm run dev`: Starts the development server.
 - `npm run build`: Builds the application for production.
-- `npm run preview`: Serves the production build locally.
+- `npm run start`: Starts the production server.
 - `npm run lint`: Lints the codebase.
-- `npm run type-check`: Checks for type errors using JSDoc.
+- `npm run type-check`: Checks for type errors using JSDoc and TypeScript.
 
 ## Project Structure
 
 ```
 ai-app/
-├── dist/
+├── app/
+│   ├── globals.css
+│   ├── layout.jsx
+│   └── page.jsx
+├── components/
+├── contexts/
+├── hooks/
 ├── public/
-├── src/
-│   ├── components/
-│   ├── containers/
-│   ├── pages/
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-├── .babelrc
+├── .env.example
 ├── .gitignore
 ├── eslint.config.js
-├── index.html
 ├── jsconfig.json
+├── next.config.mjs
 ├── package.json
-├── postcss.config.cjs
+├── postcss.config.mjs
 ├── README.md
-└── webpack.config.cjs
+└── tailwind.config.js
 ```
 
 ## Deployment
@@ -95,7 +91,7 @@ To build the application for production, run:
 npm run build
 ```
 
-This will create a `dist` folder with the production-ready assets. You can then deploy this folder to any static hosting service.
+This will create a `.next` folder with the production-ready assets. You can then deploy this to any hosting service that supports Next.js.
 
 ## Contributing
 

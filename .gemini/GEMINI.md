@@ -21,3 +21,7 @@
     // Component implementation
   }
   ```
+
+# Colors
+
+The color palette is defined in `app/globals.css` using CSS variables. To use these colors with Tailwind CSS utility classes, they must be mapped in `tailwind.config.js`.
