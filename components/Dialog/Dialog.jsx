@@ -13,24 +13,28 @@ import Button from '../Button/Button';
  */
 function Dialog({ isOpen, onClose, children }) {
   const [isMounted, setIsMounted] = useState(false);
-  const [animationClass, setAnimationClass] = useState('opacity-0');
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setIsMounted(true);
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 10);
+      return () => clearTimeout(timer);
     } else {
-      setAnimationClass('opacity-0');
+      setIsVisible(false);
     }
   }, [isOpen]);
 
   useEffect(() => {
-    if (isMounted) {
+    if (!isOpen && isMounted) {
       const timer = setTimeout(() => {
-        setAnimationClass('animate-fade-in');
-      }, 10);
+        setIsMounted(false);
+      }, 350);
       return () => clearTimeout(timer);
     }
-  }, [isMounted]);
+  }, [isOpen, isMounted]);
 
   const onTransitionEnd = () => {
     if (!isOpen) {
@@ -45,7 +49,7 @@ function Dialog({ isOpen, onClose, children }) {
   return (
     <Portal>
       <div
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs transition-opacity duration-300 ${animationClass}`}
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
         onTransitionEnd={onTransitionEnd}
       >
