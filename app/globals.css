@@ -24,4 +24,6 @@
   --color-primary-800: oklch(0.3 0.15 264);
   --color-primary-900: oklch(0.2 0.1 264);
   --color-primary-950: oklch(0.1 0.08 264);
+
+  --font-sans: "Inter", sans-serif;
 }

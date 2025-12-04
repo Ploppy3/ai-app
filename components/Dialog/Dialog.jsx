@@ -8,10 +8,11 @@ import Button from '../Button/Button';
  * @param {Object} props - Component props
  * @param {boolean} props.isOpen - Whether the dialog is open
  * @param {() => void} props.onClose - Callback when the dialog is closed
+ * @param {boolean} [props.fullscreen] - Whether the dialog should be fullscreen
  * @param {import('react').ReactNode} props.children - The content of the dialog
  * @returns {import('react').JSX.Element | null} The dialog component
  */
-function Dialog({ isOpen, onClose, children }) {
+function Dialog({ isOpen, onClose, fullscreen = false, children }) {
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -53,7 +54,10 @@ function Dialog({ isOpen, onClose, children }) {
         onClick={onClose}
         onTransitionEnd={onTransitionEnd}
       >
-        <div className="bg-white rounded-lg p-8 relative" onClick={(e) => e.stopPropagation()}>
+        <div
+          className={`bg-white p-8 relative ${fullscreen ? 'w-full h-full rounded-none' : 'rounded-lg'}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           <Button onClick={onClose} className="absolute top-0 right-0" title="Close dialog" variant="ghost" colorPalette="gray" size="sm">
             <Icon name="close" />
           </Button>

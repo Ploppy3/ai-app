@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="p-[16px]">
       <Button onClick={open}>Open Dialog</Button>
-      <Dialog isOpen={isOpen} onClose={close}>
+      <Dialog isOpen={isOpen} onClose={close} fullscreen={true}>
         <p>hello world</p>
       </Dialog>
       <div className="flex items-center gap-4 flex-wrap mt-4">
