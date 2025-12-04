@@ -5,7 +5,7 @@ import React from 'react';
  * @param {Object} props - Component props
  * @param {string} props.name - The name of the Material Symbol icon (e.g., 'close', 'menu')
  * @param {string} [props.className] - Additional CSS classes to apply to the icon
- * @param {function} [props.onClick] - Optional click handler for the icon
+ * @param {(event: import('react').MouseEvent) => void} [props.onClick] - Optional click handler for the icon
  * @returns {import('react').JSX.Element} The Icon component
  */
 function Icon({ name, className = '', onClick }) {

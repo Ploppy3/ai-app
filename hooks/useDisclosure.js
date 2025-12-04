@@ -4,8 +4,8 @@ import { useState } from 'react';
 /**
  * @typedef {Object} Disclosure
  * @property {boolean} isOpen - Whether the disclosure is open
- * @property {function} open - Function to open the disclosure
- * @property {function} close - Function to close the disclosure
+ * @property {() => void} open - Function to open the disclosure
+ * @property {() => void} close - Function to close the disclosure
  */
 
 /**
@@ -16,7 +16,7 @@ import { useState } from 'react';
 export function useDisclosure(initialState = false) {
   const [isOpen, setIsOpen] = useState(initialState);
 
-  const open = () => {setIsOpen(true);};
+  const open = () => { setIsOpen(true); };
   const close = () => setIsOpen(false);
 
   return { isOpen, open, close };

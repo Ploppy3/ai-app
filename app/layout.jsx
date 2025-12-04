@@ -1,6 +1,12 @@
 import { PortalProvider } from '../contexts/PortalContext';
 import './globals.css';
 
+/**
+ * Root layout component
+ * @param {Object} props - Component props
+ * @param {import('react').ReactNode} props.children - The content of the layout
+ * @returns {import('react').JSX.Element} The root layout component
+ */
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

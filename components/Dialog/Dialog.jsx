@@ -7,7 +7,7 @@ import Button from '../Button/Button';
  * Dialog component
  * @param {Object} props - Component props
  * @param {boolean} props.isOpen - Whether the dialog is open
- * @param {function} props.onClose - Callback when the dialog is closed
+ * @param {() => void} props.onClose - Callback when the dialog is closed
  * @param {import('react').ReactNode} props.children - The content of the dialog
  * @returns {import('react').JSX.Element | null} The dialog component
  */
