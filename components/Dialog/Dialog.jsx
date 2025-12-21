@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import FocusLock from 'react-focus-lock';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
+
+/**
+ * Global stack to track open dialogs for Escape key handling
+ * @type {string[]}
+ */
+const openDialogStack = [];
 
 /**
  * Dialog component
@@ -37,6 +43,39 @@ function Dialog({ isOpen, onClose, fullscreen = false, children }) {
       return () => clearTimeout(timer);
     }
   }, [isOpen, isMounted]);
+
+  const id = useId();
+
+  useEffect(() => {
+    if (isOpen) {
+      openDialogStack.push(id);
+      return () => {
+        const index = openDialogStack.indexOf(id);
+        if (index > -1) {
+          openDialogStack.splice(index, 1);
+        }
+      };
+    }
+  }, [isOpen, id]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        const isTopMost = openDialogStack[openDialogStack.length - 1] === id;
+        if (isTopMost) {
+          onClose();
+        }
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose, id]);
 
   const onTransitionEnd = (e) => {
     if (!isOpen && e.target === e.currentTarget && e.propertyName === 'opacity') {
