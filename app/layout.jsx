@@ -1,5 +1,8 @@
+import Button from '../components/Button/Button';
 import { PortalProvider } from '../contexts/PortalContext';
 import './globals.css';
+
+import { FRONT_ROUTER } from '../constants/routers/front.router';
 
 /**
  * Root layout component
@@ -17,6 +20,11 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body>
+        <header className="p-4 border-b border-gray-200 mb-4">
+          <Button href={FRONT_ROUTER.home()} variant="ghost" className="font-semibold">
+            Home
+          </Button>
+        </header>
         <PortalProvider>{children}</PortalProvider>
         <div id="portal-root" />
       </body>

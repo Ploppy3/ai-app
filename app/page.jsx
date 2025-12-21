@@ -5,18 +5,30 @@ import Input from '../components/Input/Input';
 import Textarea from '../components/Textarea/Textarea';
 import { useDisclosure } from '../hooks/useDisclosure';
 
+import { FRONT_ROUTER } from '../constants/routers/front.router';
+
 /**
  * Home page component
  * @returns {import('react').JSX.Element} The home page component
  */
 export default function Home() {
-  const { isOpen, open, close } = useDisclosure();
+  const { isOpen: isFullscreenOpen, open: openFullscreen, close: closeFullscreen } = useDisclosure();
+  const { isOpen: isRegularOpen, open: openRegular, close: closeRegular } = useDisclosure();
 
   return (
     <main className="p-[16px]">
-      <Button onClick={open}>Open Dialog</Button>
-      <Dialog isOpen={isOpen} onClose={close} fullscreen={true}>
-        <p>hello world</p>
+      <div className="flex gap-4">
+        <Button onClick={openFullscreen}>Open Fullscreen Dialog</Button>
+        <Button onClick={openRegular}>Open Regular Dialog</Button>
+        <Button href={FRONT_ROUTER.users.create()} colorPalette="primary">Create User</Button>
+      </div>
+
+      <Dialog isOpen={isFullscreenOpen} onClose={closeFullscreen} fullscreen={true}>
+        <p>This is a fullscreen dialog</p>
+      </Dialog>
+
+      <Dialog isOpen={isRegularOpen} onClose={closeRegular} fullscreen={false}>
+        <p>This is a regular dialog</p>
       </Dialog>
       <div className="flex items-center gap-4 flex-wrap mt-4">
         <Button size="xs" variant="flat">Click me</Button>

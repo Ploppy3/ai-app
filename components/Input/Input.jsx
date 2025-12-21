@@ -7,7 +7,7 @@ import React from 'react';
  * @param {string} [props.className] - Additional classes for the input
  * @returns {import('react').JSX.Element} The input component
  */
-function Input({ size = 'md', className = '', ...props }) {
+function Input({ size = 'md', className = '', error, ...props }) {
   const sizeClasses = {
     xs: 'h-[24px] px-[16px]',
     sm: 'h-[30px] px-[16px]',
@@ -17,12 +17,20 @@ function Input({ size = 'md', className = '', ...props }) {
   };
 
   const sizeClass = sizeClasses[size] || sizeClasses.md;
+  const borderClass = error ? 'border-red-500 focus-visible:outline-red-500' : 'border-gray-300 focus-visible:outline-black';
 
   return (
-    <input
-      {...props}
-      className={`border border-gray-300 rounded-lg outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black block w-full ${sizeClass} ${className}`}
-    />
+    <div className="w-full">
+      <input
+        {...props}
+        className={`border rounded-lg outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 block w-full ${sizeClass} ${borderClass} ${className}`}
+      />
+      {error && (
+        <p className="mt-1 text-sm text-red-500">
+          {error.message}
+        </p>
+      )}
+    </div>
   );
 }
 

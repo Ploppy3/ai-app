@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import FocusLock from 'react-focus-lock';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
@@ -21,7 +22,7 @@ function Dialog({ isOpen, onClose, fullscreen = false, children }) {
       setIsMounted(true);
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 10);
+      }, 50);
       return () => clearTimeout(timer);
     } else {
       setIsVisible(false);
@@ -37,8 +38,8 @@ function Dialog({ isOpen, onClose, fullscreen = false, children }) {
     }
   }, [isOpen, isMounted]);
 
-  const onTransitionEnd = () => {
-    if (!isOpen) {
+  const onTransitionEnd = (e) => {
+    if (!isOpen && e.target === e.currentTarget && e.propertyName === 'opacity') {
       setIsMounted(false);
     }
   };
@@ -55,13 +56,15 @@ function Dialog({ isOpen, onClose, fullscreen = false, children }) {
         onTransitionEnd={onTransitionEnd}
       >
         <div
-          className={`bg-white p-8 relative ${fullscreen ? 'w-full h-full rounded-none' : 'rounded-lg'}`}
+          className={`bg-white p-8 relative transition-all duration-300 ${fullscreen ? 'w-full h-full rounded-none' : 'rounded-lg'} ${!fullscreen ? (isVisible ? 'translate-y-0' : 'translate-y-4') : ''}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <Button onClick={onClose} className="absolute top-0 right-0" title="Close dialog" variant="ghost" colorPalette="gray" size="sm">
-            <Icon name="close" />
-          </Button>
-          {children}
+          <FocusLock disabled={!isOpen} returnFocus>
+            <Button onClick={onClose} className="absolute top-0 right-0" title="Close dialog" variant="ghost" colorPalette="gray" size="sm">
+              <Icon name="close" />
+            </Button>
+            {children}
+          </FocusLock>
         </div>
       </div>
     </Portal>

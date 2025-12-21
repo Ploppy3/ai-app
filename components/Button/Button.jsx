@@ -1,3 +1,5 @@
+import RouterLink from '../RouterLink/RouterLink';
+
 /**
  * Button component
  * @param {Object} props - Component props
@@ -6,9 +8,10 @@
  * @param {'xs' | 'sm' | 'md' | 'lg' | 'xl'} [props.size='md'] - The size of the button
  * @param {'flat' | 'outline' | 'ghost'} [props.variant='flat'] - The variant of the button
  * @param {string} [props.className] - Additional classes for the button
+ * @param {string | import('url').UrlObject} [props.href] - Optional URL to navigate to. If provided, renders a RouterLink
  * @returns {import('react').JSX.Element} The button component
  */
-function Button({ children, colorPalette = 'gray', size = 'md', variant = 'flat', className = '', ...props }) {
+function Button({ children, colorPalette = 'gray', size = 'md', variant = 'flat', className = '', href, ...props }) {
   const paletteClasses = {
     primary: {
       flat: 'bg-primary-600 hover:bg-primary-500 active:bg-primary-500 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black',
@@ -32,9 +35,18 @@ function Button({ children, colorPalette = 'gray', size = 'md', variant = 'flat'
 
   const buttonClasses = paletteClasses[colorPalette][variant];
   const sizeClass = sizeClasses[size] || sizeClasses.md;
+  const classes = `cursor-pointer inline-flex items-center rounded-lg transition-[background-color,border-color,color] duration-200 whitespace-nowrap ${buttonClasses} ${sizeClass} ${className}`;
+
+  if (href) {
+    return (
+      <RouterLink href={href} className={classes} {...props}>
+        {children}
+      </RouterLink>
+    );
+  }
 
   return (
-    <button {...props} className={`cursor-pointer inline-flex items-center rounded-lg transition-[background-color,border-color,color] duration-200 whitespace-nowrap ${buttonClasses} ${sizeClass} ${className}`}>
+    <button {...props} className={classes}>
       {children}
     </button>
   );
